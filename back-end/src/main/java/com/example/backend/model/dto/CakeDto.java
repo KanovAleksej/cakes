@@ -21,7 +21,7 @@ public class CakeDto {
     private String desc;
     private String image;
 
-    public CakeDto(Cake cake){
+    public CakeDto(Cake cake) {
         this.id = cake.getId();
         this.title = cake.getTitle();
         this.desc = cake.getDesc();

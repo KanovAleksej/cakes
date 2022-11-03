@@ -21,7 +21,7 @@ public class CakeServiceImpl {
     }
 
     public Cake save(CakeDto cakeDto) {
-         return cakeRepository.save(new Cake(
+        return cakeRepository.save(new Cake(
                 cakeDto.getTitle(),
                 cakeDto.getDesc(),
                 cakeDto.getImage()));
@@ -30,14 +30,16 @@ public class CakeServiceImpl {
     public void deleteById(Long id) {
         cakeRepository.deleteById(id);
     }
-   public Cake findById(Long id){
-       return cakeRepository.findById(id).orElseThrow(()-> new RuntimeException("id field must not be empty"));
-   }
-   public void updateCake(CakeDto cakeDto, Long id){
-       Cake cakeToUpdate = findById(id);
-       cakeToUpdate.setTitle(cakeDto.getTitle());
-       cakeToUpdate.setDesc(cakeDto.getDesc());
-       cakeToUpdate.setImage(cakeDto.getImage());
-       cakeRepository.save(cakeToUpdate);
-   }
+
+    public Cake findById(Long id) {
+        return cakeRepository.findById(id).orElseThrow(() -> new RuntimeException("given id must not be null!"));
+    }
+
+    public void updateCake(CakeDto cakeDto, Long id) {
+        Cake cakeToUpdate = findById(id);
+        cakeToUpdate.setTitle(cakeDto.getTitle());
+        cakeToUpdate.setDesc(cakeDto.getDesc());
+        cakeToUpdate.setImage(cakeDto.getImage());
+        cakeRepository.save(cakeToUpdate);
+    }
 }

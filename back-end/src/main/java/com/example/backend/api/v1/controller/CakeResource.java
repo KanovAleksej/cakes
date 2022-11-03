@@ -3,12 +3,6 @@ package com.example.backend.api.v1.controller;
 import com.example.backend.model.dto.CakeDto;
 import com.example.backend.model.model.Cake;
 import com.example.backend.service.CakeServiceImpl;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,18 +35,18 @@ public class CakeResource {
     }
 
     @PostMapping()
-    public ResponseEntity<CakeDto> saveCake(@RequestBody @Valid CakeDto cakeDto){
+    public ResponseEntity<CakeDto> saveCake(@RequestBody @Valid CakeDto cakeDto) {
         Cake cake = cakeService.save(cakeDto);
-        return new ResponseEntity<>(new CakeDto(cake),HttpStatus.CREATED);
+        return new ResponseEntity<>(new CakeDto(cake), HttpStatus.CREATED);
     }
+
     @DeleteMapping("/delete/{id}")
-    public void delete (@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         cakeService.deleteById(id);
     }
 
     @PutMapping("/update/{id}")
-    public void updateCake(@RequestBody CakeDto cakeDto, @PathVariable Long id){
+    public void updateCake(@RequestBody CakeDto cakeDto, @PathVariable Long id) {
         cakeService.updateCake(cakeDto, id);
-        System.out.println(id);
     }
 }
